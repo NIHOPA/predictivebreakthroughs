@@ -1,8 +1,8 @@
 package gov.nih.opa.mcl;
 
-import com.lexicalintelligence.spreadsheet.SpreadsheetFactory;
-import com.lexicalintelligence.spreadsheet.SpreadsheetReader;
-import com.lexicalintelligence.spreadsheet.SpreadsheetRow;
+import gov.nih.opa.spreadsheet.SpreadsheetFactory;
+import gov.nih.opa.spreadsheet.SpreadsheetReader;
+import gov.nih.opa.spreadsheet.SpreadsheetRow;
 
 public class SpreadsheetDataSource extends FileDataSource {
 

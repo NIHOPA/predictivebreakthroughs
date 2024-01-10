@@ -1,4 +1,4 @@
-package com.lexicalintelligence.spreadsheet;
+package gov.nih.opa.spreadsheet;
 
 import org.apache.poi.common.usermodel.HyperlinkType;
 import org.apache.poi.ss.usermodel.Cell;

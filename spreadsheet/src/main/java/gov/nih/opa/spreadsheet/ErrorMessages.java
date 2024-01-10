@@ -1,4 +1,4 @@
-package com.lexicalintelligence.spreadsheet;
+package gov.nih.opa.spreadsheet;
 
 public class ErrorMessages {
 

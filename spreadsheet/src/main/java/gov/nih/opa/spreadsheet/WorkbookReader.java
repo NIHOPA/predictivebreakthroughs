@@ -1,4 +1,4 @@
-package com.lexicalintelligence.spreadsheet;
+package gov.nih.opa.spreadsheet;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;

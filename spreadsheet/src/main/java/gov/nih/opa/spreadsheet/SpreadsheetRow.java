@@ -1,4 +1,4 @@
-package com.lexicalintelligence.spreadsheet;
+package gov.nih.opa.spreadsheet;
 
 import java.util.Arrays;
 import java.util.Collections;

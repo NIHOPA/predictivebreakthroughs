@@ -1,4 +1,4 @@
-package com.lexicalintelligence.spreadsheet;
+package gov.nih.opa.spreadsheet;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 

@@ -1,13 +1,13 @@
 package gov.nih.opa.ccn.driver;
 
 import com.google.common.collect.Lists;
-import com.lexicalintelligence.spreadsheet.SpreadsheetFactory;
-import com.lexicalintelligence.spreadsheet.SpreadsheetReader;
 import gov.nih.opa.ccn.common.MongoCited;
 import gov.nih.opa.ccn.common.SimConfig;
 import gov.nih.opa.ccn.common.SimType;
 import gov.nih.opa.ccn.common.SparseVector;
 import gov.nih.opa.ccn.common.WorkPool;
+import gov.nih.opa.spreadsheet.SpreadsheetFactory;
+import gov.nih.opa.spreadsheet.SpreadsheetReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
