@@ -1,7 +1,8 @@
 #!/bin/bash
 date=2023-04-20
+# set threads to number of cores / threads available
 threads=64
-cache_size=40000000
+cache_size=20000000
 threshold=0.35
 inflation=1.2
 max_iter=500
@@ -9,7 +10,7 @@ max_iter=500
 #rmcl needs unknown but high
 
 jar_dir=/data/emerging_areas/util
-jar_version=0.4.0
+jar_version=1.0.0
 out_dir=/data/emerging_areas/${date}-ccn
 mkdir ${out_dir}
 
