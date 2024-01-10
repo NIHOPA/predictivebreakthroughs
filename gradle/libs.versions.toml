@@ -12,7 +12,7 @@ koloboke-impl = { module = "com.koloboke:koloboke-impl-jdk8", version.ref = "kol
 mongodb-driver-sync = { module = "org.mongodb:mongodb-driver-sync", version.ref = "mongodb" }
 poi-base = { module = "org.apache.poi:poi", version.ref = "poi" }
 poi-ooxml = { module = "org.apache.poi:poi-ooxml", version.ref = "poi" }
-univocity = { module = "com.univocity:univocity-parsers", version = "univocity" }
+univocity = { module = "com.univocity:univocity-parsers", version.ref = "univocity" }
 
 logback-classic = { module = "ch.qos.logback:logback-classic", version = "1.4.11" }
 jansi = { module = "org.fusesource.jansi:jansi", version = "2.4.0" }
