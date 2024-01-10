@@ -1,0 +1,34 @@
+[versions]
+koloboke = "1.0.0"
+mongodb = "4.11.1"
+poi = "5.2.3"
+univocity = "2.9.1"
+
+[libraries]
+jcommander = { module = "com.beust:jcommander", version = "1.72" }
+guava = { module = "com.google.guava:guava", version = "32.0.1-jre" }
+koloboke-api = { module = "com.koloboke:koloboke-api-jdk8", version.ref = "koloboke" }
+koloboke-impl = { module = "com.koloboke:koloboke-impl-jdk8", version.ref = "koloboke" }
+mongodb-driver-sync = { module = "org.mongodb:mongodb-driver-sync", version.ref = "mongodb" }
+poi-base = { module = "org.apache.poi:poi", version.ref = "poi" }
+poi-ooxml = { module = "org.apache.poi:poi-ooxml", version.ref = "poi" }
+univocity = { module = "com.univocity:univocity-parsers", version = "univocity" }
+
+logback-classic = { module = "ch.qos.logback:logback-classic", version = "1.4.11" }
+jansi = { module = "org.fusesource.jansi:jansi", version = "2.4.0" }
+sl4j-api = { module = "org.slf4j:slf4j-api", version = "2.0.11" }
+
+#Testing Dependencies
+junit-bom = { module = "org.junit:junit-bom", version = "5.9.3" }
+jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api" }
+jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params" }
+jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
+
+
+[bundles]
+poi = ["poi-base", "poi-ooxml"]
+log = ["logback-classic", "sl4j-api", "jansi"]
+
+[plugins]
+reckon = { id = "org.ajoberstar.reckon", version = "0.18.0" }
+shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.0" }

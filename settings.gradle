@@ -1,0 +1,5 @@
+rootProject.name = "Predictive Breakthroughs"
+
+include 'citationNetworkCompute','mcl','mclCmd','spreadsheet'
+
+
