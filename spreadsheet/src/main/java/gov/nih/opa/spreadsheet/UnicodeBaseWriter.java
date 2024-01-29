@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class UnicodeBaseWriter<S extends CommonWriterSettings<?>> implements SpreadsheetWriter {
-	private AbstractWriter<S> baseWriter;
+	private final AbstractWriter<S> baseWriter;
 
 	public UnicodeBaseWriter(String path, boolean append) throws IOException {
 		baseWriter = createWriter(path, append);
@@ -46,8 +46,8 @@ public abstract class UnicodeBaseWriter<S extends CommonWriterSettings<?>> imple
 			baseWriter.addValue(null);
 			return;
 		}
-		if (obj instanceof Collection) {
-			String s = ((Collection) obj).stream().map(o -> o == null ? "" : o.toString()).collect(Collectors.joining(";")).toString();
+		if (obj instanceof Collection<?> c) {
+			String s = c.stream().map(o -> o == null ? "" : o.toString()).collect(Collectors.joining(";"));
 			baseWriter.addValue(s);
 		}
 		else {
