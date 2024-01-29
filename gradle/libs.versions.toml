@@ -5,7 +5,7 @@ poi = "5.2.3"
 univocity = "2.9.1"
 
 [libraries]
-jcommander = { module = "com.beust:jcommander", version = "1.72" }
+jcommander = { module = "com.beust:jcommander", version = "1.78" }
 guava = { module = "com.google.guava:guava", version = "32.0.1-jre" }
 koloboke-api = { module = "com.koloboke:koloboke-api-jdk8", version.ref = "koloboke" }
 koloboke-impl = { module = "com.koloboke:koloboke-impl-jdk8", version.ref = "koloboke" }
@@ -14,7 +14,7 @@ poi-base = { module = "org.apache.poi:poi", version.ref = "poi" }
 poi-ooxml = { module = "org.apache.poi:poi-ooxml", version.ref = "poi" }
 univocity = { module = "com.univocity:univocity-parsers", version.ref = "univocity" }
 
-logback-classic = { module = "ch.qos.logback:logback-classic", version = "1.4.11" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version = "1.4.12" }
 jansi = { module = "org.fusesource.jansi:jansi", version = "2.4.0" }
 sl4j-api = { module = "org.slf4j:slf4j-api", version = "2.0.11" }
 
