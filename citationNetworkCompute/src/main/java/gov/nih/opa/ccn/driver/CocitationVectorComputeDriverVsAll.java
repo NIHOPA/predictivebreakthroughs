@@ -84,22 +84,23 @@ public class CocitationVectorComputeDriverVsAll {
 					compareVectors[i] = mongoCited.getCocitationVector(pmidSubList.get(i), true, maxYear);
 				}
 
-				WorkPool workPool = new WorkPool(threads);
+				try (WorkPool workPool = new WorkPool(threads)) {
 
-				for (SparseVector cv1 : inputVectors) {
-					workPool.executeAsync(() -> {
-						for (SparseVector cv2 : compareVectors) {
+					for (SparseVector cv1 : inputVectors) {
+						workPool.executeAsync(() -> {
+							for (SparseVector cv2 : compareVectors) {
 
-							String csvLine = simConfig.getCSVLine(cv1, cv2);
-							if (csvLine != null) {
-								writer.write(csvLine);
+								String csvLine = simConfig.getCSVLine(cv1, cv2);
+								if (csvLine != null) {
+									writer.write(csvLine);
+								}
+
 							}
+							return null;
+						});
+					}
 
-						}
-						return null;
-					});
 				}
-				workPool.shutdown();
 
 			}
 

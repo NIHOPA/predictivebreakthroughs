@@ -77,11 +77,10 @@ public class WorkbookWriter implements SpreadsheetWriter {
 			cell.setCellStyle(xssfHelper.getDateStyle());
 			cell.setCellValue((Date) obj);
 		}
-		else if (obj instanceof Boolean) {
-			cell.setCellValue(Boolean.valueOf((Boolean) obj));
+		else if (obj instanceof Boolean b) {
+			cell.setCellValue(b);
 		}
-		else if (obj instanceof Collection) {
-			Collection collection = (Collection) obj;
+		else if (obj instanceof Collection<?> collection) {
 			if (collection.size() == 1) {
 				setCellValue(cell, collection.iterator().next());
 			}
@@ -139,15 +138,11 @@ public class WorkbookWriter implements SpreadsheetWriter {
 	}
 
 	private String truncateForExcel(String cell) {
-		if (cell == null) {
-			return cell;
-		}
-		cell = cell.trim();
-		if (cell.isBlank()) {
-			return cell;
-		}
-		if (cell.length() > 32000) {
-			return cell.substring(0, 32000) + "...[TRUNCATED]";
+		if (cell != null) {
+			cell = cell.trim();
+			if (cell.length() > 32000) {
+				return cell.substring(0, 32000) + "...[TRUNCATED]";
+			}
 		}
 		return cell;
 	}

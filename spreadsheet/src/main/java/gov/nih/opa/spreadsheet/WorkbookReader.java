@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 /**
  * @author Kirk Baker
- *
  */
 public class WorkbookReader extends SpreadsheetReader {
 
@@ -81,33 +80,21 @@ public class WorkbookReader extends SpreadsheetReader {
 
 	private String getCellStringValue(Cell cell) {
 		if (cell != null) {
-			if (cell.getCellType().equals(CellType.BLANK)) {
-				// do nothing?
-			}
-			else if (cell.getCellType().equals(CellType.BOOLEAN)) {
-				return String.valueOf(cell.getBooleanCellValue());
-			}
-			else if (cell.getCellType().equals(CellType.STRING)) {
-				return cell.getStringCellValue();
-			}
-			else if (cell.getCellType().equals(CellType.NUMERIC)) {
-				if (DateUtil.isCellDateFormatted(cell)) {
-					return DateTimeFormatter.ISO_INSTANT.format(cell.getDateCellValue().toInstant());
+			switch (cell.getCellType()) {
+				case BLANK, ERROR -> {
+					// do nothing?
 				}
+				case BOOLEAN -> {
+					return String.valueOf(cell.getBooleanCellValue());
+				}
+				case STRING -> {
+					return cell.getStringCellValue();
+				}
+				case NUMERIC -> {
+					if (DateUtil.isCellDateFormatted(cell)) {
+						return DateTimeFormatter.ISO_INSTANT.format(cell.getDateCellValue().toInstant());
+					}
 
-				Number numericCellValue = cell.getNumericCellValue();
-				if ((numericCellValue.doubleValue() == Math.floor(numericCellValue.doubleValue())) && !Double.isInfinite(numericCellValue.doubleValue())) {
-					return String.valueOf(numericCellValue.intValue());
-				}
-				else {
-					return String.valueOf(numericCellValue.doubleValue());
-				}
-			}
-			else if (cell.getCellType().equals(CellType.ERROR)) {
-				// do nothing?
-			}
-			else if (cell.getCellType().equals(CellType.FORMULA)) {
-				if (cell.getCachedFormulaResultType().equals(CellType.NUMERIC)) {
 					Number numericCellValue = cell.getNumericCellValue();
 					if ((numericCellValue.doubleValue() == Math.floor(numericCellValue.doubleValue())) && !Double.isInfinite(numericCellValue.doubleValue())) {
 						return String.valueOf(numericCellValue.intValue());
@@ -116,8 +103,20 @@ public class WorkbookReader extends SpreadsheetReader {
 						return String.valueOf(numericCellValue.doubleValue());
 					}
 				}
-				else if (cell.getCachedFormulaResultType().equals(CellType.STRING)) {
-					return cell.getRichStringCellValue().getString();
+				case FORMULA -> {
+					if (cell.getCachedFormulaResultType().equals(CellType.NUMERIC)) {
+						Number numericCellValue = cell.getNumericCellValue();
+						if ((numericCellValue.doubleValue() == Math.floor(numericCellValue.doubleValue())) && !Double.isInfinite(
+								numericCellValue.doubleValue())) {
+							return String.valueOf(numericCellValue.intValue());
+						}
+						else {
+							return String.valueOf(numericCellValue.doubleValue());
+						}
+					}
+					else if (cell.getCachedFormulaResultType().equals(CellType.STRING)) {
+						return cell.getRichStringCellValue().getString();
+					}
 				}
 			}
 		}
