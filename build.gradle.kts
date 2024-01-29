@@ -43,21 +43,13 @@ subprojects {
         from(sourceSets.main.get().allJava)
     }
 
-    val javadocJar = tasks.register<Jar>("javadocJar") {
-        dependsOn(JavaPlugin.JAVADOC_TASK_NAME)
-        archiveClassifier.set("javadoc")
-        from(tasks.javadoc)
-    }
-
     artifacts.add("archives", sourcesJar)
-    artifacts.add("archives", javadocJar)
 
     publishing {
         publications {
             create<MavenPublication>("mavenJava") {
                 from(components["java"])
                 artifact(tasks["sourcesJar"])
-                artifact(tasks["javadocJar"])
                 pom {
                     url.set("https://dpcpsi.nih.gov/opa")
                     licenses {
