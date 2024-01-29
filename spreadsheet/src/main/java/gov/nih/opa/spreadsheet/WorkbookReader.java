@@ -19,14 +19,13 @@ import java.util.ArrayList;
  */
 public class WorkbookReader extends SpreadsheetReader {
 
-	private Workbook reader;
-	private Sheet sheet;
+	private final Workbook reader;
+	private final Sheet sheet;
 
-	private int numberOfRows;
-	private int currentRow;
-	private int numberOfCells;
-
+	private final int numberOfRows;
+	private final int numberOfCells;
 	private final boolean hasHeader;
+	private int currentRow;
 
 	public WorkbookReader(String file, boolean hasHeader) throws Exception {
 		this(new FileInputStream(file), hasHeader);
