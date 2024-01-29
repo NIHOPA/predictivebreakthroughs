@@ -30,5 +30,5 @@ poi = ["poi-base", "poi-ooxml"]
 log = ["logback-classic", "sl4j-api", "jansi"]
 
 [plugins]
-reckon = { id = "org.ajoberstar.reckon", version = "0.18.0" }
-shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.0" }
+reckon = { id = "org.ajoberstar.reckon", version = "0.18.2" }
+shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }
