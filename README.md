@@ -11,6 +11,7 @@
   * from the command line `./gradlew`
 
 ### Run CCN calculation
+* If using mongodb that is not local set `mongoURI` java system property to desired url (defaults to `mongodb://localhost:27017`) 
 * `java -jar citationNetworkCompute/build/libs/citationNetworkCompute-1.0.1-SNAPSHOT-all.jar /path/to/output/ccn.tsv threads thresholdToWrite cacheSize maxYear`
   * set threads to the number of threads that you wish to use for the calculation
   * set threshold to the minimum edge weight to be written to the csv (0.35 used by manuscript and is recommended)
