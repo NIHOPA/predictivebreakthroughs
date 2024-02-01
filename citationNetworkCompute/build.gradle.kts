@@ -14,5 +14,5 @@ dependencies {
 }
 
 application {
-    mainClass.set("com.lexicalintelligence.citationnetwork.scripts.CocitationVectorComputeDriverAllVsCCN")
+    mainClass.set("gov.nih.opa.ccn.driver.CocitationVectorComputeDriverAllVsCCN")
 }

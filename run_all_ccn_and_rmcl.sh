@@ -1,21 +1,21 @@
 #!/bin/bash
-date=2023-04-20
+date=2019-02-01
 # set threads to number of cores / threads available
 threads=64
 cache_size=20000000
 threshold=0.35
 inflation=1.2
 max_iter=500
-#ccn need at least 175G
-#rmcl needs unknown but high
 
-jar_dir=/data/emerging_areas/util
-jar_version=1.0.0
-out_dir=/data/emerging_areas/${date}-ccn
+jar_dir=/data/predictive_breakthroughs/util
+jar_version=1.0.1-SNAPSHOT
+out_dir=/data/predictive_breakthroughs/${date}-ccn
 mkdir ${out_dir}
 
+#ccn need at least 175GB
+#rmcl needs at least 350GB
 heap=350g
-for year in {2018..2021}
+for year in {1980..2017}
 do
   ccn_output=${out_dir}/${year}_${date}_${threshold}_ccn.tsv
   rmcl_output=${out_dir}/${year}_${date}_${threshold}_rmcl_${inflation}

@@ -4,7 +4,7 @@ plugins {
 }
 
 application {
-    mainClass.set("com.lexicalintelligence.mcl.MCLCmd")
+    mainClass.set("gov.nih.opa.mcl.MCLCmd")
 }
 
 tasks.getByName<Zip>("shadowDistZip").archiveClassifier.set("shadow")
