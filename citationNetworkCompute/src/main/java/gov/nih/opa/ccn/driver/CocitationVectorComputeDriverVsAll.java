@@ -30,27 +30,13 @@ public class CocitationVectorComputeDriverVsAll {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CocitationVectorComputeDriverVsAll.class);
 
-	public static void main(String[] args) throws Exception {
-
-		if (args.length != 5) {
-
-			System.out.println("Usage: inputCsv outputCsv threads thresholdToWrite maxYear");
-			System.out.println("--Example: /home/user/input.csv /home/user/output.csv 8 0.2 2017");
-			System.exit(1);
-		}
-
+	public static void computeCCNVsAll(String inputCsv, String outputCsv, int threads, double thresholdToWrite, int maxYear) throws Exception {
 		MongoCited mongoCited = MongoCited.getMongoCited();
 
-		String inputCsv = args[0];
-		String outputCsv = args[1];
-		int threads = Integer.parseInt(args[2]);
-		double thresholdToWrite = Double.parseDouble(args[3]);
-		int maxYear = Integer.parseInt(args[4]);
-
-		System.out.println("Threshold To write: " + thresholdToWrite);
-		System.out.println("Max Year: " + maxYear);
-		System.out.println("Reading pmids from: " + inputCsv);
-		System.out.println("Writing output to: " + outputCsv);
+		LOG.info("Threshold To write: " + thresholdToWrite);
+		LOG.info("Max Year: " + maxYear);
+		LOG.info("Reading pmids from: " + inputCsv);
+		LOG.info("Writing output to: " + outputCsv);
 
 		List<Integer> pmids = new ArrayList<>(readCSVToList(inputCsv));
 		System.out.println("Read Input Pmids: " + pmids.size());
@@ -105,7 +91,6 @@ public class CocitationVectorComputeDriverVsAll {
 			}
 
 		}
-
 	}
 
 	public static TreeSet<Integer> readCSVToList(String inputCsv) throws Exception {

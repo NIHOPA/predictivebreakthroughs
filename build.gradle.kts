@@ -66,6 +66,13 @@ subprojects {
                             organization.set("NIH/DPCPSI/OPA")
                             organizationUrl.set("https://dpcpsi.nih.gov/opa")
                         }
+                        developer {
+                            id.set("payam.meyer")
+                            name.set("Payam Mayer")
+                            email.set("payam.meyer@nih.gov")
+                            organization.set("NIH/DPCPSI/OPA")
+                            organizationUrl.set("https://dpcpsi.nih.gov/opa")
+                        }
                     }
                     scm {
                         connection.set("git@github.com:NIHOPA/predictive_breakthroughs.git")

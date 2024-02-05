@@ -10,8 +10,6 @@ application {
 tasks.getByName<Zip>("shadowDistZip").archiveClassifier.set("shadow")
 tasks.getByName<Tar>("shadowDistTar").archiveClassifier.set("shadow")
 
-val knowledgeVersion: String by project
-
 dependencies {
     implementation(project(":mcl"))
     implementation(project(":spreadsheet"))

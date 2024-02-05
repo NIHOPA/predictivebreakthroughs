@@ -3,8 +3,6 @@ plugins {
     alias(libs.plugins.shadow)
 }
 
-val knowledgeVersion: String by project
-
 dependencies {
     api(project(":spreadsheet"))
     api(libs.guava)

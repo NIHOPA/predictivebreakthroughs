@@ -13,8 +13,6 @@ import gov.nih.opa.ccn.common.WorkPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.Writer;
 import java.util.Collections;
 import java.util.Set;
@@ -32,41 +30,9 @@ public class CocitationVectorComputeDriverAllVsCCN {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CocitationVectorComputeDriverAllVsCCN.class);
 
-	public static void main(String[] args) throws Exception {
-
-		if (args.length < 4 || args.length > 5) {
-			System.out.println("All vs. CCN with Year (First Order)");
-			System.out.println("REFERENCE SCALING VERSION");
-			System.out.println("Usage: outputTsv threads thresholdToWrite cacheSize [maxYear]");
-			System.out.println("--Example: /home/user/output.tsv 16 0.35 1000000 2015");
-			System.exit(1);
-		}
-
-		String outputCsv = args[0];
-		int threads = Integer.parseInt(args[1]);
-		double thresholdToWrite = Double.parseDouble(args[2]);
-		int cacheSize = Integer.parseInt(args[3]);
-
-		Integer maxYear = null;
-		if (args.length == 5) {
-			maxYear = Integer.parseInt(args[4]);
-		}
-
-		LOG.info("Starting Processing");
-		Set<Integer> allPmids = MongoCited.getMongoCited().getAllCitedPmids(maxYear);
-
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputCsv))) {
-
-			computeFirstOrderCCN(threads, cacheSize, thresholdToWrite, writer, allPmids, maxYear);
-
-		}
-		LOG.info("Finished Processing");
-
-	}
-
 	public static void computeFirstOrderCCN(int threads, int cacheSize, double thresholdToWrite, Writer writer, Set<Integer> allPmids, Integer maxYear)
 			throws Exception {
-		System.out.println("Total Pmids to Compare Against: " + allPmids.size());
+		LOG.info("Total Pmids to Compare Against: " + allPmids.size());
 
 		AtomicLong counter = new AtomicLong();
 
