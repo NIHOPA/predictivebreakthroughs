@@ -12,7 +12,7 @@
 
 ### Run CCN calculation
 * If using mongodb that is not local set `mongoURI` java system property to desired url (defaults to `mongodb://localhost:27017`) 
-* `java -jar citationNetworkCompute/build/libs/citationNetworkCompute-1.0.1-SNAPSHOT-all.jar /path/to/output/ccn.tsv threads thresholdToWrite cacheSize maxYear`
+* `./ccnCmd/build/install/bin/ccnD ccnFirstOrder --output /path/to/output/ccn.tsv --threads threads --threshold thresholdToWrite --cacheSize cacheSize --maxYear maxYear`
   * set threads to the number of threads that you wish to use for the calculation
   * set threshold to the minimum edge weight to be written to the csv (0.35 used by manuscript and is recommended)
   * cacheSize determines the amount of CCN that are cached in memory.  Set cacheSize based on the amount of RAM available
