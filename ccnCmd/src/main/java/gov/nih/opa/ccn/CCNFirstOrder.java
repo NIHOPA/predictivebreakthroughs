@@ -16,6 +16,9 @@ public class CCNFirstOrder implements Callable<Integer> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CCNFirstOrder.class);
 
+	@CommandLine.ParentCommand
+	private CCND ccnd;
+
 	@CommandLine.Option(names = { "--output" }, description = "Full path to the output TSV file i.e. /path/to/output.tsv", required = true)
 	public String output;
 

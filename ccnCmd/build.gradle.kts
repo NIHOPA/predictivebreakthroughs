@@ -15,26 +15,10 @@ dependencies {
 }
 
 val ccnScriptTask = tasks.getByName<CreateStartScripts>("startScripts")
-ccnScriptTask.applicationName = "ccn"
-ccnScriptTask.mainClass.set("gov.nih.opa.ccn.CCN")
 
-val ccnFirstOrderScriptTask = tasks.register<CreateStartScripts>("createCCNFirstOrderScript") {
-    applicationName = "ccnFirstOrder"
-    mainClass.set("gov.nih.opa.ccn.CCNFirstOrder")
-    outputDir = ccnScriptTask.outputDir
-    classpath = ccnScriptTask.classpath
-
-    doLast {
-        val unixScriptFile = file(unixScript)
-        val text = unixScriptFile.readText(Charsets.UTF_8)
-        val newText = text.replace("APP_HOME=\"`pwd -P`\"", "export APP_HOME=\"`pwd -P`\"")
-        unixScriptFile.writeText(newText, Charsets.UTF_8)
-    }
-}
-
-val ccnPMIDsScriptTask = tasks.register<CreateStartScripts>("createCCNPMIDsScript") {
-    applicationName = "ccnPMIDs"
-    mainClass.set("gov.nih.opa.ccn.CCNPMIDs")
+val ccnDScriptTask = tasks.register<CreateStartScripts>("createCCNDScript") {
+    applicationName = "ccnD"
+    mainClass.set("gov.nih.opa.ccn.CCND")
     outputDir = ccnScriptTask.outputDir
     classpath = ccnScriptTask.classpath
 
@@ -52,34 +36,23 @@ tasks.register("autocompleteDir") {
     }
 }
 
-task("picoCliCCNFirstOrderAutoComplete", JavaExec::class) {
+task("picoCliCCNDAutoComplete", JavaExec::class) {
     dependsOn("autocompleteDir")
     mainClass.set("picocli.AutoComplete")
     classpath = sourceSets["main"].runtimeClasspath
-    args = listOf("--force", "--completionScript", "${layout.buildDirectory.get()}/autocomplete/ccnFirstOrder.sh", "gov.nih.opa.ccn.CCNFirstOrder")
-}
-
-task("picoCliCCNPMIDsAutoComplete", JavaExec::class) {
-    dependsOn("autocompleteDir")
-    mainClass.set("picocli.AutoComplete")
-    classpath = sourceSets["main"].runtimeClasspath
-    args = listOf("--force", "--completionScript", "${layout.buildDirectory.get()}/autocomplete/ccnPMIDs.sh", "gov.nih.opa.ccn.CCNPMIDs")
+    args = listOf("--force", "--completionScript", "${layout.buildDirectory.get()}/autocomplete/ccnD.sh", "gov.nih.opa.ccn.CCND")
 }
 
 tasks.withType<AbstractArchiveTask> {
     dependsOn(
-        "picoCliCCNFirstOrderAutoComplete",
-        "picoCliCCNPMIDsAutoComplete",
+        "picoCliCCNDAutoComplete",
     )
 }
 
 distributions {
     main {
         contents {
-            from(ccnFirstOrderScriptTask) {
-                into("bin")
-            }
-            from(ccnPMIDsScriptTask) {
+            from(ccnDScriptTask) {
                 into("bin")
             }
             from("${layout.buildDirectory.get()}/autocomplete/") {

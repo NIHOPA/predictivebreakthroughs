@@ -12,6 +12,9 @@ public class CCNPMIDs implements Callable<Integer> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CCNPMIDs.class);
 
+	@CommandLine.ParentCommand
+	private CCND ccnd;
+
 	@CommandLine.Option(names = { "--input" }, description = "Full path to the input CSV file i.e. /path/to/input.csv", required = true)
 	public String input;
 
