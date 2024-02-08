@@ -7,13 +7,13 @@ import picocli.CommandLine;
 
 import java.util.concurrent.Callable;
 
-@CommandLine.Command(name = "ccnPMIDs", description = "Computes co-citation network of a set of PMIDs vs all PMIDs in the database")
+@CommandLine.Command(name = "ccnPMIDs", description = "Computes co-citation network of a set of PMIDs vs all papers (the full CCN) for a maximum year using reference scaling")
 public class CCNPMIDs implements Callable<Integer> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CCNPMIDs.class);
 
 	@CommandLine.ParentCommand
-	private CCND ccnd;
+	private CCN ccnd;
 
 	@CommandLine.Option(names = { "--input" }, description = "Full path to the input CSV file i.e. /path/to/input.csv", required = true)
 	public String input;

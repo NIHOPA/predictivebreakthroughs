@@ -15,20 +15,9 @@ dependencies {
 }
 
 val ccnScriptTask = tasks.getByName<CreateStartScripts>("startScripts")
+ccnScriptTask.applicationName = "ccn"
+ccnScriptTask.mainClass.set("gov.nih.opa.ccn.CCN")
 
-val ccnDScriptTask = tasks.register<CreateStartScripts>("createCCNDScript") {
-    applicationName = "ccnD"
-    mainClass.set("gov.nih.opa.ccn.CCND")
-    outputDir = ccnScriptTask.outputDir
-    classpath = ccnScriptTask.classpath
-
-    doLast {
-        val unixScriptFile = file(unixScript)
-        val text = unixScriptFile.readText(Charsets.UTF_8)
-        val newText = text.replace("APP_HOME=\"`pwd -P`\"", "export APP_HOME=\"`pwd -P`\"")
-        unixScriptFile.writeText(newText, Charsets.UTF_8)
-    }
-}
 
 tasks.register("autocompleteDir") {
     doLast {
@@ -40,7 +29,7 @@ task("picoCliCCNDAutoComplete", JavaExec::class) {
     dependsOn("autocompleteDir")
     mainClass.set("picocli.AutoComplete")
     classpath = sourceSets["main"].runtimeClasspath
-    args = listOf("--force", "--completionScript", "${layout.buildDirectory.get()}/autocomplete/ccnD.sh", "gov.nih.opa.ccn.CCND")
+    args = listOf("--force", "--completionScript", "${layout.buildDirectory.get()}/autocomplete/ccn.sh", "gov.nih.opa.ccn.CCN")
 }
 
 tasks.withType<AbstractArchiveTask> {
@@ -52,7 +41,7 @@ tasks.withType<AbstractArchiveTask> {
 distributions {
     main {
         contents {
-            from(ccnDScriptTask) {
+            from(ccnScriptTask) {
                 into("bin")
             }
             from("${layout.buildDirectory.get()}/autocomplete/") {

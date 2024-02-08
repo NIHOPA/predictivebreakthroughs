@@ -11,13 +11,13 @@ import java.io.FileWriter;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
-@CommandLine.Command(name = "ccnFirstOrder", description = "All vs. CCN with Year (First Order), Reference Scaling Version")
+@CommandLine.Command(name = "ccnFirstOrder", description = "Computes co-citation network of a set of all PMIDs in the database vs the papers co-cited by those PMIDs (first order CCN) for a maximum year using reference scaling")
 public class CCNFirstOrder implements Callable<Integer> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CCNFirstOrder.class);
 
 	@CommandLine.ParentCommand
-	private CCND ccnd;
+	private CCN ccnd;
 
 	@CommandLine.Option(names = { "--output" }, description = "Full path to the output TSV file i.e. /path/to/output.tsv", required = true)
 	public String output;
