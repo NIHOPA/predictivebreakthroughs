@@ -28,7 +28,7 @@
 
 ### Run MCL calculation
 
-* `./mclCmd/build/install/bin/mcl inflation --input /path/to/output/ccn.tsv --output /path/to/output/rmcl --inflation 1.2 --maxIterations 500`
+* `./mclCmd/build/install/bin/mcl run --input /path/to/output/ccn.tsv --output /path/to/output/rmcl --inflation 1.2 --maxIterations 500`
     * The recommend inflation is 1.2 to match the results of the manuscript. Inflation the amount of granularity in clustering with higher inflation values
       causing more broken up clusters
     * The recommend max iterations is 500 to match the results of the manuscript. This parameter determines the maximum iterations of the RMCL algorithm are run

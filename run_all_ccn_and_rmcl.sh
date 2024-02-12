@@ -24,5 +24,5 @@ do
   ccn_log=${out_dir}/${year}_${date}__ccn.log
   rmcl_log=${out_dir}/${year}_${date}__rmcl.log
   ./${ccn_scripts_dir}/ccn ccnFirstOrder --output ${ccn_output} --threads ${threads} --threshold ${threshold} --cacheSize ${cache_size} --maxYear ${year} &>${ccn_log}
-  ./${mcl_scripts_dir}/mcl inflation --input ${ccn_output} --output ${rmcl_output} --inflation ${inflation} --maxIterations ${max_iter} &>${rmcl_log}
+  ./${mcl_scripts_dir}/mcl run --input ${ccn_output} --output ${rmcl_output} --inflation ${inflation} --maxIterations ${max_iter} &>${rmcl_log}
 done
