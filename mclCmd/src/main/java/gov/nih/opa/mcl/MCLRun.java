@@ -9,10 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
-@CommandLine.Command(name = "inflation", description = "The MCL algorithm is short for the Markov Cluster Algorithm, a fast and scalable unsupervised cluster algorithm for graphs (also known as networks) based on simulation of (stochastic) flow in graphs. More: https://micans.org/mcl/")
-public class MCLInflation implements Callable<Integer>, MCLParameters {
+@CommandLine.Command(name = "run", description = "The MCL algorithm is short for the Markov Cluster Algorithm, a fast and scalable unsupervised cluster algorithm for graphs (also known as networks) based on simulation of (stochastic) flow in graphs. More: https://micans.org/mcl/")
+public class MCLRun implements Callable<Integer>, MCLParameters {
 
-	private static final Logger LOG = LoggerFactory.getLogger(MCLInflation.class);
+	private static final Logger LOG = LoggerFactory.getLogger(MCLRun.class);
 
 	@CommandLine.ParentCommand
 	private MCL mcl;
@@ -104,7 +104,7 @@ public class MCLInflation implements Callable<Integer>, MCLParameters {
 	}
 
 	public static void main(String[] args) {
-		PICOCommonCmd.runCommandLine(new MCLInflation(), args);
+		PICOCommonCmd.runCommandLine(new MCLRun(), args);
 	}
 
 	@Override
