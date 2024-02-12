@@ -1,4 +1,4 @@
-package gov.nih.opa.ccn;
+package gov.nih.opa.pico;
 
 import picocli.CommandLine;
 

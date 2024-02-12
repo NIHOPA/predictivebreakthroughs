@@ -1,5 +1,5 @@
 rootProject.name = "Predictive Breakthroughs"
 
-include 'citationNetworkCompute', 'mcl', 'mclCmd', 'spreadsheet', 'ccnCmd'
+include 'citationNetworkCompute', 'mcl', 'mclCmd', 'spreadsheet', 'ccnCmd', 'picoCommon'
 
 

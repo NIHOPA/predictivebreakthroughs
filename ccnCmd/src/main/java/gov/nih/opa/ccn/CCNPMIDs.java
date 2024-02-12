@@ -1,6 +1,7 @@
 package gov.nih.opa.ccn;
 
 import gov.nih.opa.ccn.driver.CocitationVectorComputeDriverVsAll;
+import gov.nih.opa.pico.PICOCommonCmd;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
@@ -44,7 +45,7 @@ public class CCNPMIDs implements Callable<Integer> {
 	}
 
 	public static void main(String[] args) {
-		CCNCommonCmd.runCommandLine(new CCNPMIDs(), args);
+		PICOCommonCmd.runCommandLine(new CCNPMIDs(), args);
 	}
 }
 

@@ -10,13 +10,13 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class MCL {
+public class MCLRunner {
 
-	private static final Logger LOG = Logger.getLogger(MCL.class.getSimpleName());
+	private static final Logger LOG = Logger.getLogger(MCLRunner.class.getSimpleName());
 
 	private final MCLParameters mclParameters;
 
-	public MCL(MCLParameters mclParameters) {
+	public MCLRunner(MCLParameters mclParameters) {
 
 		this.mclParameters = mclParameters;
 	}

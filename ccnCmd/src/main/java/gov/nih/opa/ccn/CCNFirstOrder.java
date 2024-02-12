@@ -2,6 +2,7 @@ package gov.nih.opa.ccn;
 
 import gov.nih.opa.ccn.common.MongoCited;
 import gov.nih.opa.ccn.driver.CocitationVectorComputeDriverAllVsCCN;
+import gov.nih.opa.pico.PICOCommonCmd;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
@@ -50,7 +51,7 @@ public class CCNFirstOrder implements Callable<Integer> {
 	}
 
 	public static void main(String[] args) {
-		CCNCommonCmd.runCommandLine(new CCNFirstOrder(), args);
+		PICOCommonCmd.runCommandLine(new CCNFirstOrder(), args);
 	}
 }
 

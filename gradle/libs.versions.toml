@@ -6,7 +6,6 @@ univocity = "2.9.1"
 picocli = "4.7.5"
 
 [libraries]
-jcommander = { module = "com.beust:jcommander", version = "1.82" }
 guava = { module = "com.google.guava:guava", version = "32.0.1-jre" }
 koloboke-api = { module = "com.koloboke:koloboke-api-jdk8", version.ref = "koloboke" }
 koloboke-impl = { module = "com.koloboke:koloboke-impl-jdk8", version.ref = "koloboke" }

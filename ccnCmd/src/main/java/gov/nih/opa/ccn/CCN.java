@@ -1,5 +1,7 @@
 package gov.nih.opa.ccn;
 
+import gov.nih.opa.pico.PICOCommonCmd;
+import gov.nih.opa.pico.ShowStackArgs;
 import picocli.CommandLine;
 
 @CommandLine.Command(name = "ccn", subcommands = { CCNFirstOrder.class,
@@ -10,7 +12,7 @@ public class CCN {
 	private ShowStackArgs showStackArgs;
 
 	public static void main(String[] args) {
-		CCNCommonCmd.runCommandLine(new CCN(), args);
+		PICOCommonCmd.runCommandLine(new CCN(), args);
 	}
 
 }

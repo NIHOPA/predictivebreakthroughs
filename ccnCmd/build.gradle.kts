@@ -3,7 +3,7 @@ plugins {
     `java-library`
 }
 
-description = "CCN CMD"
+description = "CLI for running CCN operations."
 
 defaultTasks("build", "installDist")
 
@@ -11,13 +11,12 @@ dependencies {
     implementation(project(":citationNetworkCompute"))
     implementation(project(":spreadsheet"))
     annotationProcessor(libs.picocli.codegen)
-    implementation(libs.picocli.base)
+    implementation(project(":picoCommon"))
 }
 
 val ccnScriptTask = tasks.getByName<CreateStartScripts>("startScripts")
 ccnScriptTask.applicationName = "ccn"
 ccnScriptTask.mainClass.set("gov.nih.opa.ccn.CCN")
-
 
 tasks.register("autocompleteDir") {
     doLast {
@@ -25,7 +24,7 @@ tasks.register("autocompleteDir") {
     }
 }
 
-task("picoCliCCNDAutoComplete", JavaExec::class) {
+task("picoCliCCNAutoComplete", JavaExec::class) {
     dependsOn("autocompleteDir")
     mainClass.set("picocli.AutoComplete")
     classpath = sourceSets["main"].runtimeClasspath
@@ -34,7 +33,7 @@ task("picoCliCCNDAutoComplete", JavaExec::class) {
 
 tasks.withType<AbstractArchiveTask> {
     dependsOn(
-        "picoCliCCNDAutoComplete",
+        "picoCliCCNAutoComplete",
     )
 }
 

@@ -1,10 +1,10 @@
-package gov.nih.opa.ccn;
+package gov.nih.opa.pico;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Help.Ansi.Style;
 import picocli.CommandLine.Help.ColorScheme;
 
-public class CCNCommonCmd {
+public class PICOCommonCmd {
 	private final static ColorScheme COLOR_SCHEME = new ColorScheme.Builder().commands(Style.bold, Style.fg_blue)    // combine multiple styles
 			.options(Style.fg_magenta)                // yellow foreground color
 			.parameters(Style.fg_magenta).optionParams(Style.italic).errors(Style.fg_red, Style.bold).stackTraces(Style.italic).applySystemProperties().build();
