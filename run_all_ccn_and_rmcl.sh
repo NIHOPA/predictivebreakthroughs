@@ -8,6 +8,8 @@ inflation=1.2
 max_iter=500
 
 jar_dir=/data/predictive_breakthroughs/util
+ccn_scripts_dir=ccnCmd/build/install/bin
+mcl_scripts_dir=mclCmd/build/install/bin
 jar_version=1.0.1-SNAPSHOT
 out_dir=/data/predictive_breakthroughs/${date}-ccn
 mkdir ${out_dir}
@@ -21,6 +23,6 @@ do
   rmcl_output=${out_dir}/${year}_${date}_${threshold}_rmcl_${inflation}
   ccn_log=${out_dir}/${year}_${date}__ccn.log
   rmcl_log=${out_dir}/${year}_${date}__rmcl.log
-  java -Xmx${heap} -jar ${jar_dir}/citationNetworkCompute-${jar_version}-all.jar ${ccn_output} ${threads} ${threshold} ${cache_size} ${year} &>${ccn_log}
-  java -Xmx${heap} -jar ${jar_dir}/mcl-${jar_version}-all.jar --in ${ccn_output} --out ${rmcl_output} --inflation ${inflation} --max ${max_iter} &>${rmcl_log}
+  ./${ccn_scripts_dir}/ccn ccnFirstOrder --output ${ccn_output} --threads ${threads} --threshold ${threshold} --cacheSize ${cache_size} --maxYear ${year} &>${ccn_log}
+  ./${mcl_scripts_dir}/mcl run --input ${ccn_output} --output ${rmcl_output} --inflation ${inflation} --maxIterations ${max_iter} &>${rmcl_log}
 done

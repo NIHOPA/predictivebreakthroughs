@@ -3,19 +3,20 @@ plugins {
     `java-library`
 }
 
-description = "CLI for running MCL operations."
+description = "CLI for running CCN operations."
 
 defaultTasks("build", "installDist")
 
 dependencies {
-    implementation(project(":mcl"))
+    implementation(project(":citationNetworkCompute"))
     implementation(project(":spreadsheet"))
+    annotationProcessor(libs.picocli.codegen)
     implementation(project(":picoCommon"))
 }
 
 val ccnScriptTask = tasks.getByName<CreateStartScripts>("startScripts")
-ccnScriptTask.applicationName = "mcl"
-ccnScriptTask.mainClass.set("gov.nih.opa.mcl.MCL")
+ccnScriptTask.applicationName = "ccn"
+ccnScriptTask.mainClass.set("gov.nih.opa.ccn.CCN")
 
 tasks.register("autocompleteDir") {
     doLast {
@@ -23,16 +24,16 @@ tasks.register("autocompleteDir") {
     }
 }
 
-task("picoCliMCLAutoComplete", JavaExec::class) {
+task("picoCliCCNAutoComplete", JavaExec::class) {
     dependsOn("autocompleteDir")
     mainClass.set("picocli.AutoComplete")
     classpath = sourceSets["main"].runtimeClasspath
-    args = listOf("--force", "--completionScript", "${layout.buildDirectory.get()}/autocomplete/mcl.sh", "gov.nih.opa.mcl.MCL")
+    args = listOf("--force", "--completionScript", "${layout.buildDirectory.get()}/autocomplete/ccn.sh", "gov.nih.opa.ccn.CCN")
 }
 
 tasks.withType<AbstractArchiveTask> {
     dependsOn(
-        "picoCliMCLAutoComplete",
+        "picoCliCCNAutoComplete",
     )
 }
 
