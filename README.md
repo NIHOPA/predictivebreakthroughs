@@ -1,6 +1,6 @@
 # Predictive Breakthroughs
 
-This respository contains code to reproduce the results of the predictive breakthroughs manuscript.  In addition, it includes code that can be used independently for cocitation network (CCN) computation and MCL/R-MCL (Regularized Markov Clustering Algorithm).  The R-MCL code algorithm has been tested on networks with more than 25 million nodes and 1 billion edges. 
+This repository contains code to reproduce the results of the predictive breakthroughs manuscript.  In addition, it includes code that can be used independently for cocitation network (CCN) computation and MCL/R-MCL (Regularized Markov Clustering Algorithm).  The R-MCL code algorithm has been tested on networks with more than 25 million nodes and 1 billion edges. 
 
 ### Setup Environment
 
@@ -37,7 +37,7 @@ This respository contains code to reproduce the results of the predictive breakt
       causing more broken up clusters
     * The recommend max iterations is 500 to match the results of the manuscript. This parameter determines the maximum iterations of the RMCL algorithm are run
       before terminating
-    * If running latest year set JVM size to 350g
+    * If running latest year set JVM size to 350g, earlier years take far less
       * Specific `JAVA_OPTS="-Xmx350g"` at the start of the command line, set the environment variable or edit the bash script
 
 # Automation
