@@ -1,5 +1,7 @@
 # Predictive Breakthroughs
 
+This respository contains code to reproduce the results of the predictive breakthroughs manuscript.  In addition, it includes code that can be used independently for cocitation network (CCN) computation and MCL/R-MCL (Regularized Markov Clustering Algorithm).  The R-MCL code algorithm has been tested on networks with more than 25 million nodes and 1 billion edges. 
+
 ### Setup Environment
 
 * Checkout code from this GitHub repository
@@ -29,8 +31,7 @@
     * maxYear filters the citation network to the year in question. Stepping the max year through a range over a series of runs allows the analysis of the CCN
       network over time
 
-### Run MCL calculation
-
+### Run R-MCL calculation
 * `./mclCmd/build/install/bin/mcl run --input /path/to/output/ccn.tsv --output /path/to/output/rmcl --inflation 1.2 --maxIterations 500`
     * The recommend inflation is 1.2 to match the results of the manuscript. Inflation the amount of granularity in clustering with higher inflation values
       causing more broken up clusters
