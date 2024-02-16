@@ -1,6 +1,9 @@
 # Predictive Breakthroughs
 
-This repository contains code to reproduce the results of the predictive breakthroughs manuscript.  In addition, it includes code that can be used independently for cocitation network (CCN) computation and MCL/R-MCL (Regularized Markov Clustering Algorithm).  The R-MCL code algorithm has been tested on networks with more than 25 million nodes and 1 billion edges. 
+This repository contains code to reproduce the results of the predictive breakthroughs manuscript.
+In addition, it includes code that can be used independently for co-citation network (CCN) computation and MCL/R-MCL (Regularized Markov Clustering Algorithm).
+The CCN code has been tested on the entire nih open citation collection with more than 25 million cited publications and 750 million citations.
+The R-MCL code algorithm has been tested on networks with more than 25 million nodes and 1 billion edges. 
 
 ### Setup Environment
 
