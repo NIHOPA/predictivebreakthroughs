@@ -5,6 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+/***
+ * Simple datasource when input in tab separated three columns file: nodeA nodeB weight
+ */
 public class ABCMCLDataSource extends FileDataSource {
 
 	public ABCMCLDataSource(String fileName) {

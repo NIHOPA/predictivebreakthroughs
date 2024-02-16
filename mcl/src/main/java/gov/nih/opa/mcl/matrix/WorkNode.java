@@ -1,5 +1,8 @@
 package gov.nih.opa.mcl.matrix;
 
+/**
+ * Working node class to hold the current value of an index within a column
+ */
 public class WorkNode {
 
 	protected final int index;

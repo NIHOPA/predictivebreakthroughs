@@ -2,26 +2,10 @@ package gov.nih.opa.mcl;
 
 import com.koloboke.collect.map.hash.HashIntDoubleMap;
 
-public class MCLNode {
-
-	private int nodeAId;
-	private HashIntDoubleMap edges;
-
-	public MCLNode(int nodeAId, HashIntDoubleMap edges) {
-		this.nodeAId = nodeAId;
-		this.edges = edges;
-	}
-
-	public int getNodeAId() {
-		return nodeAId;
-	}
-
-	public HashIntDoubleMap getEdges() {
-		return edges;
-	}
-
-	@Override
-	public String toString() {
-		return "MCLNode{" + "nodeAId=" + nodeAId + ", edges=" + edges + '}';
-	}
+/**
+ * Node structure used as input into the clustering algorithm
+ * All node names have been mapped to an integer index
+ * Edges are stored as a map of node neighbors as an integer index with a weight
+ */
+public record MCLNode(int nodeAId, HashIntDoubleMap edges) {
 }

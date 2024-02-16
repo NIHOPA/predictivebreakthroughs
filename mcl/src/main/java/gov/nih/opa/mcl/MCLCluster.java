@@ -2,10 +2,13 @@ package gov.nih.opa.mcl;
 
 import java.util.TreeSet;
 
+/** Stores the results of MCL clustering
+ *
+ */
 public class MCLCluster {
 	private int id;
-	protected int attractor;
-	private TreeSet<String> nodes;
+	protected final int attractor;
+	private final TreeSet<String> nodes;
 
 	public MCLCluster(int attractor) {
 		this.attractor = attractor;

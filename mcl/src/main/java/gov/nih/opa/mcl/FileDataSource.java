@@ -9,6 +9,10 @@ import com.koloboke.collect.map.hash.HashIntObjMaps;
 import java.util.Map;
 import java.util.function.Consumer;
 
+/**
+ * Data source wrapper that handle the mapping of node names to integer indexes
+ * Child classes just need to implement open() and call handleInput(String nodeA, String nodeB, String value) for each edge
+ */
 public abstract class FileDataSource implements MCLDataSource {
 
 	private final String fileName;

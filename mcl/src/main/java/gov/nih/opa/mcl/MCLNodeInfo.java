@@ -7,12 +7,15 @@ import com.koloboke.collect.map.hash.HashObjIntMaps;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Handles a mapping of node names to an integer for more efficient computation
+ */
 public class MCLNodeInfo {
 
-	private HashIntObjMap<String> idToName;
-	private HashObjIntMap<String> nameToId;
+	private final HashIntObjMap<String> idToName;
+	private final HashObjIntMap<String> nameToId;
 
-	private AtomicInteger counter;
+	private final AtomicInteger counter;
 
 	public MCLNodeInfo() {
 		idToName = HashIntObjMaps.newMutableMap();

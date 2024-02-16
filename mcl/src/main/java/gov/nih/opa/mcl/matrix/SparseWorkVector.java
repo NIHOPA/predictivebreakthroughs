@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Container for the operations done on each column.
+ */
 public class SparseWorkVector {
 
 	private final List<WorkNode> nodes;
@@ -22,8 +25,8 @@ public class SparseWorkVector {
 		nodes.add(node);
 	}
 
-	public void divideNodesBy(double sum) {
-		nodes.forEach(node -> node.value = node.value / sum);
+	public void divideNodesBy(double val) {
+		nodes.forEach(node -> node.value = node.value / val);
 	}
 
 	public void removeIfBelow(float pruneThreshold) {

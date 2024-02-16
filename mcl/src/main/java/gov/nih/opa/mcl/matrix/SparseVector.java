@@ -2,6 +2,10 @@ package gov.nih.opa.mcl.matrix;
 
 import java.util.List;
 
+/**
+ * SparseVector enables optimized storage of sparse vectors with ability to take dot products and differences between the vector at high speed
+ * Index of max value is tracked to identify the attractor to determine cluster assignment at the end of the MCL algorithm
+ */
 public class SparseVector {
 
 	protected final int label;

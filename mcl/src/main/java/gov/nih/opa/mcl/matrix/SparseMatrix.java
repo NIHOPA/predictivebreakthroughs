@@ -4,11 +4,12 @@ import com.koloboke.collect.map.hash.HashIntIntMap;
 import com.koloboke.collect.map.hash.HashIntIntMaps;
 
 import java.util.concurrent.atomic.DoubleAdder;
-import java.util.logging.Logger;
 import java.util.stream.IntStream;
 
+/**
+ * SparseMatrix handles the multiply, inflate, prune steps of the MCL algorithm using a SparseVector[] as a basis for the matrix.  It also allows finding the attractor to determine cluster assignment.
+ */
 public class SparseMatrix {
-	private static final Logger LOG = Logger.getLogger(SparseMatrix.class.getSimpleName());
 	public static final double ZERO_THRESHOLD = 10 * Double.MIN_VALUE;
 
 	private final SparseVector[] columns;

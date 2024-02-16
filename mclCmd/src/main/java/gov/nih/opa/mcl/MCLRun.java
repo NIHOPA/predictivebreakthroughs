@@ -9,6 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
+/**
+ * Main driver for MCL/R-MCL that handle arguments to the algorithm and writing the results to a simple file format
+ */
 @CommandLine.Command(name = "run", description = "Run the Markov Cluster Algorithm (MCL) or Regularized Markov Clustering Algorithm (RMCL).  MCL is fast and scalable unsupervised cluster algorithm for graphs based on simulation of stochastic flow in graphs. More on MCL here: https://micans.org/mcl/ and R-MCL here: https://cs.gmu.edu/~carlotta/SDM10Forum/posters/satuluri.pdf")
 public class MCLRun implements Callable<Integer>, MCLParameters {
 
@@ -50,57 +53,43 @@ public class MCLRun implements Callable<Integer>, MCLParameters {
 		LOG.info("Starting Processing");
 
 		MCLRunner mcl = new MCLRunner(this);
-
 		MCLResults mclResults = mcl.run(new SpreadsheetDataSource(getInput()));
+		writeOutput(mclResults);
 
+		long end = System.currentTimeMillis();
+		LOG.info("Finished Processing");
+		LOG.info("Generated " + mclResults.clusters().size() + " clusters");
+		LOG.info("Took " + String.format("%.2f", (end - start) / 1000.0) + " seconds");
+
+		return CommandLine.ExitCode.OK;
+	}
+
+	private void writeOutput(MCLResults mclResults) throws IOException {
 		String inflationSuffix = "_I" + String.format("%.2f", getInflation());
 		String typeSuffix = isRegularized() ? "RMCL" : "MCL";
 		String output = getOutput() + inflationSuffix + "_" + typeSuffix;
 		try (FileWriter results = new FileWriter(output + "_id_to_cluster.tsv")) {
-
-			mclResults.iterateResuts(mclCluster -> {
-				try {
-					for (String node : mclCluster.getNodes()) {
-						results.write(mclCluster.getId() + "\t" + node + "\n");
-					}
+			for (MCLCluster mclCluster : mclResults.clusters()) {
+				for (String node : mclCluster.getNodes()) {
+					results.write(mclCluster.getId() + "\t" + node + "\n");
 				}
-				catch (IOException e) {
-					throw new RuntimeException(e);
-				}
-			});
+			}
 		}
 
 		try (FileWriter results = new FileWriter(output + "_clusters.txt")) {
-			mclResults.iterateResuts(mclCluster -> {
-				try {
-					for (String node : mclCluster.getNodes()) {
-						results.write(node + " ");
-					}
-					results.write("\n");
+			for (MCLCluster mclCluster : mclResults.clusters()) {
+				for (String node : mclCluster.getNodes()) {
+					results.write(node + " ");
 				}
-				catch (IOException e) {
-					throw new RuntimeException(e);
-				}
-			});
+				results.write("\n");
+			}
 		}
 
 		try (FileWriter results = new FileWriter(output + "_cluster_size.txt")) {
-			mclResults.iterateResuts(mclCluster -> {
-				try {
-					results.write(mclCluster.getSize() + "\n");
-				}
-				catch (IOException e) {
-					throw new RuntimeException(e);
-				}
-			});
+			for (MCLCluster mclCluster : mclResults.clusters()) {
+				results.write(mclCluster.getSize() + "\n");
+			}
 		}
-
-		long end = System.currentTimeMillis();
-		LOG.info("Finished Processing");
-		LOG.info("Generated " + mclResults.getNumberOfClusters() + " clusters");
-		LOG.info("Took " + String.format("%.2f", (end - start) / 1000.0) + " seconds");
-
-		return CommandLine.ExitCode.OK;
 	}
 
 	public static void main(String[] args) {
