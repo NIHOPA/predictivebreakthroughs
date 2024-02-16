@@ -6,6 +6,9 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Handles high speed similarity computation from sparse vectors (cosine, jaccard, minSim) and difference computation
+ */
 public class SparseVector {
 
 	private final int id;

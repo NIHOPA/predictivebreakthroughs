@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.function.BiFunction;
 
 /**
+ * Generates a CSV output (header and individual lines) based on the settings selected
  * Created by mdavis on 6/27/17.
  */
 public class SimConfig {

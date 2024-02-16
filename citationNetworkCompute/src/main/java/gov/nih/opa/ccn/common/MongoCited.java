@@ -31,9 +31,8 @@ import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.lte;
 
 /**
- * Created by Matt Davis on 2/11/16.
- *
- * @author mdavis
+ * Base class for interacting with the mongo database of citations
+ * Use mongoURI property to set path to mongodb
  */
 public class MongoCited {
 

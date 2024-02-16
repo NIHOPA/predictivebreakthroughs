@@ -4,6 +4,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * Helps name threading in a logical way for logging and debugging
  * Very similar to NamedThreadFactory in lucene but keeps the client from depending on lucene
  */
 public class NamedThreadFactory implements ThreadFactory {
