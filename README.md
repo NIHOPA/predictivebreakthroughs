@@ -7,6 +7,9 @@
 * Install mongodb 7.x or later
 * Restore citations database snapshot
     * Use 2019-02 citations database to match the data used in the manuscript
+    * wget https://icite.od.nih.gov/covid19/dba8f5/af95/cited_2019_snapshot-f39ea.json
+    * mongoimport cited_2019_snapshot-f39ea.json -db cocitations --collection cited
+    * the first time the code runs it will create an index on citesPmid which will take some time
 * Compile code
     * from the command line `./gradlew`
 
