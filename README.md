@@ -16,15 +16,15 @@
 ### Run CCN calculation
 
 * If using mongodb that is not local set `mongoURI` java system property to desired url (defaults to `mongodb://localhost:27017`)
-* `./ccnCmd/build/install/bin/ccn ccnFirstOrder --output /path/to/output/ccn.tsv --threads threads --threshold thresholdToWrite --cacheSize cacheSize --maxYear maxYear`
+* `./ccnCmd/build/install/ccnCmd/bin/ccn ccnFirstOrder --output /path/to/output/ccn.tsv --threads threads --threshold thresholdToWrite --cacheSize cacheSize --maxYear maxYear`
     * set threads to the number of threads that you wish to use for the calculation
     * set threshold to the minimum edge weight to be written to the csv (0.35 used by manuscript and is recommended)
     * cacheSize determines the amount of CCN that are cached in memory. Set cacheSize based on the amount of RAM available
         * To cache all publications and achieve maximum performance for the most recent year set to 20000000
             * requires at least 175GB of RAM
-            * Specific `-Xmx175g` after java in the command line
+            * Specific `JAVA_OPTS="-Xmx175g"` at the start of the command line, set the environment variable or edit the bash script
         * Good performance can be achieved at cache size of 10000000
-            * Specific `-Xmx85g` after java in the command line
+            * Specific `JAVA_OPTS="-Xmx85g"` after java in the command line, set the environment variable or edit the bash script
         * In other cases adjust cache size based on memory available
     * maxYear filters the citation network to the year in question. Stepping the max year through a range over a series of runs allows the analysis of the CCN
       network over time
@@ -36,6 +36,8 @@
       causing more broken up clusters
     * The recommend max iterations is 500 to match the results of the manuscript. This parameter determines the maximum iterations of the RMCL algorithm are run
       before terminating
+    * If running latest year set JVM size to 350g
+      * Specific `JAVA_OPTS="-Xmx350g"` at the start of the command line, set the environment variable or edit the bash script
 
 # Automation
 
