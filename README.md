@@ -13,12 +13,12 @@ This repository contains code to reproduce the results of the predictive breakth
     * mongoimport cited_2019_snapshot-f39ea.json -db cocitations --collection cited
     * the first time the code runs it will create an index on citesPmid which will take some time
 * Compile code
-    * from the command line `./gradlew`
+    * from the command line `./gradlew installDist`
 
 ### Run CCN calculation
 
 * If using mongodb that is not local set `mongoURI` java system property to desired url (defaults to `mongodb://localhost:27017`)
-* `./ccnCmd/build/install/ccnCmd/bin/ccn ccnFirstOrder --output /path/to/output/ccn.tsv --threads threads --threshold thresholdToWrite --cacheSize cacheSize --maxYear maxYear`
+* `./ccnCmd/build/install/ccnCmd/bin/ccn --output /path/to/output/ccn.tsv --threads threads --threshold thresholdToWrite --cacheSize cacheSize --maxYear maxYear`
     * set threads to the number of threads that you wish to use for the calculation
     * set threshold to the minimum edge weight to be written to the csv (0.35 used by manuscript and is recommended)
     * cacheSize determines the amount of CCN that are cached in memory. Set cacheSize based on the amount of RAM available
@@ -32,7 +32,7 @@ This repository contains code to reproduce the results of the predictive breakth
       network over time
 
 ### Run R-MCL calculation
-* `./mclCmd/build/install/bin/mcl run --input /path/to/output/ccn.tsv --output /path/to/output/rmcl --inflation 1.2 --maxIterations 500`
+* `./mclCmd/build/install/mclCmd/bin/mcl run --input /path/to/output/ccn.tsv --output /path/to/output/rmcl --inflation 1.2 --maxIterations 500`
     * The recommend inflation is 1.2 to match the results of the manuscript. Inflation the amount of granularity in clustering with higher inflation values
       causing more broken up clusters
     * The recommend max iterations is 500 to match the results of the manuscript. This parameter determines the maximum iterations of the RMCL algorithm are run
