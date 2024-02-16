@@ -3,9 +3,9 @@ package gov.nih.opa.mcl;
 import com.koloboke.collect.map.hash.HashIntIntMap;
 import com.koloboke.collect.map.hash.HashIntObjMap;
 import com.koloboke.collect.map.hash.HashIntObjMaps;
+import gov.nih.opa.mcl.matrix.SparseColumn;
 import gov.nih.opa.mcl.matrix.SparseMatrix;
-import gov.nih.opa.mcl.matrix.SparseVector;
-import gov.nih.opa.mcl.matrix.SparseWorkVector;
+import gov.nih.opa.mcl.matrix.SparseWorkColumn;
 import gov.nih.opa.mcl.matrix.WorkNode;
 
 import java.util.ArrayList;
@@ -42,14 +42,14 @@ public class MCLRunner {
 		MCLNodeInfo nodeInfo = mclDataSource.getNodeInfo();
 		LOG.info("--Data source has " + nodeInfo.getNodeCount() + " nodes");
 
-		SparseVector[] columns = new SparseVector[nodeInfo.getNodeCount()];
+		SparseColumn[] columns = new SparseColumn[nodeInfo.getNodeCount()];
 
 		LOG.info("--Loading edges into sparse matrix");
 
 		mclDataSource.iterateEdges(node -> {
 
 			double sum = 0;
-			SparseWorkVector v = new SparseWorkVector(node.nodeAId());
+			SparseWorkColumn v = new SparseWorkColumn(node.nodeAId());
 			for (Map.Entry<Integer, Double> entry : node.edges().entrySet()) {
 				double val = entry.getValue();
 				sum += val;
@@ -63,10 +63,10 @@ public class MCLRunner {
 			v.sort();
 			v.removeIfBelow(mclParameters.getPruningThreshold());
 
-			columns[node.nodeAId()] = v.getSparseVector();
+			columns[node.nodeAId()] = v.getSparseColumn();
 		});
 
-		Arrays.sort(columns, Comparator.comparing(SparseVector::getLabel));
+		Arrays.sort(columns, Comparator.comparing(SparseColumn::getLabel));
 
 		SparseMatrix beginMatrix = null;
 		if (mclParameters.isRegularized()) { //R-MCL replaces currentMatrix*currentMatrix with currentMatrix*matrixAtStart

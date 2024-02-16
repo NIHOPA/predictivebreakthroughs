@@ -7,12 +7,12 @@ import java.util.List;
 /**
  * Container for the operations done on each column.
  */
-public class SparseWorkVector {
+public class SparseWorkColumn {
 
 	private final List<WorkNode> nodes;
 	private final int label;
 
-	public SparseWorkVector(int label) {
+	public SparseWorkColumn(int label) {
 		this.label = label;
 		nodes = new ArrayList<>();
 	}
@@ -41,7 +41,7 @@ public class SparseWorkVector {
 		nodes.sort(Comparator.comparing(workNode -> workNode.index));
 	}
 
-	public SparseVector getSparseVector() {
-		return new SparseVector(label, nodes);
+	public SparseColumn getSparseColumn() {
+		return new SparseColumn(label, nodes);
 	}
 }

@@ -3,10 +3,10 @@ package gov.nih.opa.mcl.matrix;
 import java.util.List;
 
 /**
- * SparseVector enables optimized storage of sparse vectors with ability to take dot products and differences between the vector at high speed
+ * SparseColumn enables optimized storage of sparse columns with ability to look at column shift with the difference method
  * Index of max value is tracked to identify the attractor to determine cluster assignment at the end of the MCL algorithm
  */
-public class SparseVector {
+public class SparseColumn {
 
 	protected final int label;
 
@@ -15,7 +15,7 @@ public class SparseVector {
 
 	protected final int indexOfMaxValue;
 
-	public SparseVector(int label, List<WorkNode> workNodes) {
+	public SparseColumn(int label, List<WorkNode> workNodes) {
 		this.label = label;
 
 		int size = workNodes.size();
@@ -41,46 +41,8 @@ public class SparseVector {
 		return label;
 	}
 
-	public float dot(SparseVector other) {
 
-		float dot = 0;
-
-		int otherPointer = 0;
-		int thisPointer = 0;
-
-		int otherLength = other.indexes.length;
-		int thisLength = this.indexes.length;
-
-		int otherMaxIdx = other.indexes[otherLength - 1];
-		int thisMaxIdx = this.indexes[thisLength - 1];
-
-		while (otherPointer < otherLength && thisPointer < thisLength) {
-
-			int otherIndex = other.indexes[otherPointer];
-			int thisIndex = this.indexes[thisPointer];
-
-			if (thisIndex > otherMaxIdx || otherIndex > thisMaxIdx) {
-				break;
-			}
-
-			if (otherIndex == thisIndex) {
-				dot += other.values[otherPointer] * this.values[thisPointer];
-				otherPointer++;
-				thisPointer++;
-			}
-			else if (otherIndex < thisIndex) {
-				otherPointer++;
-			}
-			else {
-				thisPointer++;
-			}
-
-		}
-
-		return dot;
-	}
-
-	public double diff(SparseVector other) {
+	public double diff(SparseColumn other) {
 
 		double diff = 0;
 

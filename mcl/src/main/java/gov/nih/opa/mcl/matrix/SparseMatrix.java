@@ -7,19 +7,19 @@ import java.util.concurrent.atomic.DoubleAdder;
 import java.util.stream.IntStream;
 
 /**
- * SparseMatrix handles the multiply, inflate, prune steps of the MCL algorithm using a SparseVector[] as a basis for the matrix.  It also allows finding the attractor to determine cluster assignment.
+ * SparseMatrix handles the multiply, inflate, prune steps of the MCL algorithm using a SparseColumn[] as a basis for the matrix.  It also allows finding the attractor to determine cluster assignment.
  */
 public class SparseMatrix {
 	public static final double ZERO_THRESHOLD = 10 * Double.MIN_VALUE;
 
-	private final SparseVector[] columns;
+	private final SparseColumn[] columns;
 	private double shift = 1;
 	private long numberOfEntries = 0;
 
-	public SparseMatrix(SparseVector[] columns) {
+	public SparseMatrix(SparseColumn[] columns) {
 		this.columns = columns;
 
-		for (SparseVector column : this.columns) {
+		for (SparseColumn column : this.columns) {
 			numberOfEntries += column.indexes.length;
 		}
 	}
@@ -34,22 +34,22 @@ public class SparseMatrix {
 
 	public SparseMatrix multiplyInflatePrune(SparseMatrix other, Float inflation, Float pruneThreshold, boolean normalize) {
 
-		SparseVector[] newColumns = new SparseVector[columns.length];
+		SparseColumn[] newColumns = new SparseColumn[columns.length];
 
 		DoubleAdder difference = new DoubleAdder();
 
 		IntStream.range(0, columns.length).parallel().forEach(col -> {
-			SparseVector bCol = other.columns[col];
+			SparseColumn bCol = other.columns[col];
 
 			double sum = 0;
 
-			SparseWorkVector sv = new SparseWorkVector(col);
+			SparseWorkColumn sv = new SparseWorkColumn(col);
 
 			int k = bCol.indexes.length;
 
 			int[] aColRowIdx = new int[k];
 
-			SparseVector[] aCols = new SparseVector[k];
+			SparseColumn[] aCols = new SparseColumn[k];
 
 			for (int i = 0; i < k; i++) {
 				aCols[i] = columns[bCol.indexes[i]];
@@ -59,7 +59,7 @@ public class SparseMatrix {
 			while (!done) {
 				int minRow = columns.length + 1;
 				for (int i = 0; i < k; i++) {
-					SparseVector aCol = aCols[i];
+					SparseColumn aCol = aCols[i];
 					if (aColRowIdx[i] < aCol.indexes.length) {
 						minRow = Math.min(aCol.indexes[aColRowIdx[i]], minRow);
 					}
@@ -67,7 +67,7 @@ public class SparseMatrix {
 
 				double result = 0;
 				for (int i = 0; i < k; i++) {
-					SparseVector aCol = aCols[i];
+					SparseColumn aCol = aCols[i];
 					if (aColRowIdx[i] < aCol.indexes.length) {
 						int aRowIdxForColumn = aColRowIdx[i];
 						if (aCol.indexes[aRowIdxForColumn] == minRow) {
@@ -87,7 +87,7 @@ public class SparseMatrix {
 
 				done = true;
 				for (int i = 0; i < k; i++) {
-					SparseVector aCol = aCols[i];
+					SparseColumn aCol = aCols[i];
 					if (aColRowIdx[i] < aCol.indexes.length) {
 						done = false;
 						break;
@@ -103,7 +103,7 @@ public class SparseMatrix {
 				sv.removeIfBelow(pruneThreshold);
 			}
 
-			newColumns[col] = sv.getSparseVector();
+			newColumns[col] = sv.getSparseColumn();
 
 			difference.add(this.columns[col].diff(newColumns[col]));
 
@@ -117,7 +117,7 @@ public class SparseMatrix {
 	public HashIntIntMap getIdToAttractorMap() {
 		HashIntIntMap idToAttractorMap = HashIntIntMaps.newMutableMap();
 
-		for (SparseVector col : this.columns) {
+		for (SparseColumn col : this.columns) {
 			int attractor = col.indexOfMaxValue;
 			idToAttractorMap.put(col.label, attractor);
 		}
