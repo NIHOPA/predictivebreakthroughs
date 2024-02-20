@@ -69,4 +69,9 @@ public abstract class FileDataSource implements MCLDataSource {
 	public String getFileName() {
 		return fileName;
 	}
+
+	@Override
+	public String toString() {
+		return "File Data Source: " + fileName;
+	}
 }
