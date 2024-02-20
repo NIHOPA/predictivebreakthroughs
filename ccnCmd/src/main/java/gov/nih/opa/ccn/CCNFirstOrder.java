@@ -26,10 +26,10 @@ public class CCNFirstOrder implements Callable<Integer> {
 	@CommandLine.Option(names = "--threads", description = "Number of threads to use.", required = true)
 	public Integer threads;
 
-	@CommandLine.Option(names = "--threshold", description = "Threshold to write.", required = true)
+	@CommandLine.Option(names = "--threshold", description = "Threshold to write. Recommended: 0.35", required = true)
 	public Double threshold;
 
-	@CommandLine.Option(names = "--cacheSize", description = "Cache size.", required = true)
+	@CommandLine.Option(names = "--cacheSize", description = "Cache size. Recommended: 20000000 i.e. 20Gs if available.", required = true)
 	public Integer cacheSize;
 
 	@CommandLine.Option(names = "--maxYear", description = "Maximum year to calculate.", required = true)

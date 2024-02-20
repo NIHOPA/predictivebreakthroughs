@@ -30,4 +30,8 @@ public class SpreadsheetDataSource extends FileDataSource {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Spreadsheet Data Source: " + getFileName();
+	}
 }

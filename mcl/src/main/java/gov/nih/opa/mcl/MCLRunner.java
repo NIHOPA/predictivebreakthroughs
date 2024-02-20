@@ -7,12 +7,13 @@ import gov.nih.opa.mcl.matrix.SparseColumn;
 import gov.nih.opa.mcl.matrix.SparseMatrix;
 import gov.nih.opa.mcl.matrix.SparseWorkColumn;
 import gov.nih.opa.mcl.matrix.WorkNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /***
  * Entry point in the MCL/R-MCL algorithm
@@ -25,7 +26,7 @@ import java.util.logging.Logger;
  */
 public class MCLRunner {
 
-	private static final Logger LOG = Logger.getLogger(MCLRunner.class.getSimpleName());
+	private static final Logger LOG = LoggerFactory.getLogger(MCLRunner.class);
 
 	private final MCLParameters mclParameters;
 
@@ -36,15 +37,15 @@ public class MCLRunner {
 
 	public MCLResults run(MCLDataSource mclDataSource) throws Exception {
 
-		LOG.info("--Running MCL with parameters <" + mclParameters + ">");
-		LOG.info("--Reading from " + mclDataSource);
+		LOG.info("Running MCL with parameters <" + mclParameters + ">");
+		LOG.info("Reading from " + mclDataSource);
 		mclDataSource.open();
 		MCLNodeInfo nodeInfo = mclDataSource.getNodeInfo();
-		LOG.info("--Data source has " + nodeInfo.getNodeCount() + " nodes");
+		LOG.info("Data source has " + nodeInfo.getNodeCount() + " nodes");
 
 		SparseColumn[] columns = new SparseColumn[nodeInfo.getNodeCount()];
 
-		LOG.info("--Loading edges into sparse matrix");
+		LOG.info("Loading edges into sparse matrix");
 
 		mclDataSource.iterateEdges(node -> {
 
@@ -86,7 +87,7 @@ public class MCLRunner {
 			}
 		}
 
-		LOG.info("--Finished iterations");
+		LOG.info("Finished iterations");
 
 		HashIntObjMap<MCLCluster> clusterToIdMap = HashIntObjMaps.newMutableMap();
 		HashIntIntMap idToAttractorMap = current.getIdToAttractorMap();
@@ -106,6 +107,7 @@ public class MCLRunner {
 	}
 
 	private void logIter(int iter, SparseMatrix current) {
+
 		LOG.info("iteration " + String.format("%4d", iter) + ": shift " + String.format("%.8f", current.getShift()) + " entries: "
 				+ current.getNumberOfEntries());
 	}

@@ -46,4 +46,8 @@ public class ABCMCLDataSource extends FileDataSource {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "ABCMCL Data Source";
+	}
 }
