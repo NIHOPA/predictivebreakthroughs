@@ -46,4 +46,4 @@ The R-MCL code algorithm has been tested on networks with more than 25 million n
 
 # Automation
 
-* the run_all_cnn_and_rmcl.sh is provided as a helper to run the calculation with the values in the manuscript for a year range
+* The run_all_cnn_and_rmcl.sh script is provided as a helper to run the CCN and RMCL calculations with the values in the manuscript for a year range.
