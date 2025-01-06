@@ -1,6 +1,6 @@
 # Predictive Breakthroughs
 
-This repository contains code to reproduce the results of the `Prediction of transformative breakthroughs in biomedical research` manuscript.  This includes the co-citation network calculation for all of PubMed, the R-MCL clustering of the co-cocitation networks, the trajectory generation, and the logistic regression and post regression processing for identification of breakthrough signals.
+This repository contains code to reproduce the results of the *Prediction of transformative breakthroughs in biomedical research manuscript*.  This includes the co-citation network calculation for all of PubMed, the R-MCL clustering of the co-cocitation networks, the trajectory generation, and the logistic regression and post regression processing for identification of breakthrough signals.
 
 In addition, it includes code that can be used independently for co-citation network (CCN) computation and MCL/R-MCL (Regularized Markov Clustering Algorithm) clustering.
 The CCN code has been tested on the entire nih open citation collection with more than 25 million cited publications and 750 million citations.
