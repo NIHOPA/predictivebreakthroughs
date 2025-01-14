@@ -46,3 +46,11 @@ The R-MCL code algorithm has been tested on networks with more than 25 million n
 # Automation
 
 * The run_all_cnn_and_rmcl.sh script is provided as a helper to run the CCN and RMCL calculations with the values in the manuscript for a year range.
+
+### Trajectory generation
+
+* The trajectory_code_r subfolder contains the R scripts needed to generate trajectory information (and the cluster_node_attr summary). config.ini contains the necessary path information, after which run scripts in numerical order (1_, 2_, etc)
+
+### Breakthrough candidate generation
+
+* Logistic regression and breakthrough candidate generation scripts are in the breakthrough_candidates_code_py subfolder. Folder paths to the breakthrough data, trajectory output and regression/candidate output will need to be provided in the code, after which run logistic_regression.py to train a regressor and predict candidates for the SetA/B period, and breakthrough_candidates.py to filter them for breakthrough signals.
