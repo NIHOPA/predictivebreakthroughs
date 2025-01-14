@@ -12,8 +12,7 @@ The R-MCL code algorithm has been tested on networks with more than 25 million n
 * Install Java 21 or later
 * Install mongodb 7.x or later
 * Restore citations database snapshot
-    * Use 2019-02 citations database to match the data used in the manuscript
-    * wget https://icite.od.nih.gov/covid19/dba8f5/af95/cited_2019_snapshot-f39ea.json
+    * Download data from https://figshare.com/s/ca05c0539e77fb2a1dc1
     * mongoimport cited_2019_snapshot-f39ea.json -db cocitations --collection cited
     * the first time the code runs it will create an index on citesPmid which will take some time
 * Compile code
