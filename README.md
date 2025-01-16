@@ -54,3 +54,7 @@ The R-MCL code algorithm has been tested on networks with more than 25 million n
 ### Breakthrough candidate generation
 
 * Logistic regression and breakthrough candidate generation scripts are in the breakthrough_candidates_code_py subfolder. Folder paths to the breakthrough data, trajectory output and regression/candidate output will need to be provided in the code, after which run logistic_regression.py to train a regressor and predict candidates for the SetA/B period, and breakthrough_candidates.py to filter them for breakthrough signals.
+
+# License
+
+Use of this software requires a license.  No rights are granted beyond the view access permitted by the GitHub Terms and Conditions.  Please contact the authors for a license agreement if you wish to use this software.
