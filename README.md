@@ -13,7 +13,7 @@ The R-MCL code algorithm has been tested on networks with more than 25 million n
 * Install mongodb 7.x or later
 * Restore citations database snapshot
     * Download data from https://figshare.com/s/ca05c0539e77fb2a1dc1
-    * mongoimport cited_2019_snapshot-f39ea.json -db cocitations --collection cited
+    * mongoimport cited_2019_snapshot-f39ea.json --db cocitations --collection cited
     * the first time the code runs it will create an index on citesPmid which will take some time
 * Compile code
     * from the command line `./gradlew installDist`
