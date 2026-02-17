@@ -6,6 +6,8 @@ In addition, it includes code that can be used independently for co-citation net
 The CCN code has been tested on the entire nih open citation collection with more than 25 million cited publications and 750 million citations.
 The R-MCL code algorithm has been tested on networks with more than 25 million nodes and 1 billion edges. 
 
+For the CCN that includes all articles through the end of 2017, this requires 14.7 billion computations at ~500k/sec, the equivalent of approximately eight hours run time on an AWS EC2 server.  The computation requires at least 384GB of RAM, making computation on a desktop computer not feasible. 
+
 ### Setup Environment
 
 * Checkout code from this GitHub repository
